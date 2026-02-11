@@ -203,6 +203,8 @@ body {
 }
 .menu-container {
     position: relative;
+    display: flex;
+    gap: 4px;
 }
 .menu, .menu ul {
     list-style: none;
@@ -213,6 +215,7 @@ body {
     visibility: hidden;
     position: absolute;
     right: 0;
+    top: 42px;
     background: Canvas;
     color: CanvasText;
     border-radius: 6px;
@@ -250,6 +253,10 @@ body {
     fill: Canvas;
     filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .2));
 }
+/* Stijl voor de actieve TTS highlight */
+foliate-view::part(overlayer) {
+    pointer-events: none;
+}
 </style>
 <input type="file" id="file-input" hidden>
 <div id="drop-target" class="filter">
@@ -278,13 +285,28 @@ body {
             <path d="M 4 6 h 16 M 4 12 h 16 M 4 18 h 16"/>
         </svg>
     </button>
-    <div id="menu-button" class="menu-container">
-        <button aria-label="Show settings" aria-haspopup="true">
+    <div class="menu-container">
+        <button id="tts-button" title="Start/Stop Voorlezen" aria-label="Text to speech">
             <svg class="icon" width="24" height="24" aria-hidden="true">
-                <path d="M5 12.7a7 7 0 0 1 0-1.4l-1.8-2 2-3.5 2.7.5a7 7 0 0 1 1.2-.7L10 3h4l.9 2.6 1.2.7 2.7-.5 2 3.4-1.8 2a7 7 0 0 1 0 1.5l1.8 2-2 3.5-2.7-.5a7 7 0 0 1-1.2.7L14 21h-4l-.9-2.6a7 7 0 0 1-1.2-.7l-2.7.5-2-3.4 1.8-2Z"/>
-                <circle cx="12" cy="12" r="3"/>
+                <path d="M11 5 L6 9 H2 V15 H6 L11 19 V5 Z M15.54 8.46 a 5 5 0 0 1 0 7.07 M19.07 4.93 a 10 10 0 0 1 0 14.14"/>
             </svg>
         </button>
+        <div id="voice-menu-button">
+            <button aria-label="Selecteer stem" aria-haspopup="true" title="Stem selecteren">
+                <svg class="icon" width="24" height="24" aria-hidden="true">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3M8 22h8"/>
+                </svg>
+            </button>
+        </div>
+        <div id="menu-button">
+            <button aria-label="Show settings" aria-haspopup="true">
+                <svg class="icon" width="24" height="24" aria-hidden="true">
+                    <path d="M5 12.7a7 7 0 0 1 0-1.4l-1.8-2 2-3.5 2.7.5a7 7 0 0 1 1.2-.7L10 3h4l.9 2.6 1.2.7 2.7-.5 2 3.4-1.8 2a7 7 0 0 1 0 1.5l1.8 2-2 3.5-2.7-.5a7 7 0 0 1-1.2.7L14 21h-4l-.9-2.6a7 7 0 0 1-1.2-.7l-2.7.5-2-3.4 1.8-2Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+            </button>
+        </div>
     </div>
 </div>
 <div id="nav-bar" class="toolbar">
